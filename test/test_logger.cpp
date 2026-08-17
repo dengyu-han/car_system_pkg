@@ -2,6 +2,8 @@
 #include "logger.hpp"
 #include <string>
 #include <filesystem>
+#include <thread>
+#include <vector>
 
 namespace fs = std::filesystem;
 
@@ -94,9 +96,7 @@ TEST(LoggerTest, StopAndReset)
     fs::remove(test_dir);
 }
 
-// 【实习加分用例】多线程并发写日志
-#include <thread>
-#include <vector>
+// 多线程并发写日志
 TEST(LoggerTest, MultiThreadWrite)
 {
     logger_mod::Logger log;

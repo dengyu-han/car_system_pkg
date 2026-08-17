@@ -55,7 +55,7 @@ private:
     {
         const auto& src_vec = msg->data;
         size_t byte_cnt = src_vec.size() * sizeof(double);
-        //==== 修改：使用 allocate_by_bytes ====
+        //==== 使用 allocate_by_bytes ====
         void* buf = mem_pool_->allocate_by_bytes(byte_cnt);
         if(nullptr == buf)
         {
@@ -78,7 +78,7 @@ private:
     {
         const auto& src_vec = msg->data;
         size_t byte_cnt = src_vec.size() * sizeof(double);
-        //==== 修改：使用 allocate_by_bytes ====
+        //==== 使用 allocate_by_bytes ====
         void* buf = mem_pool_->allocate_by_bytes(byte_cnt);
         if(nullptr == buf)
         {
@@ -101,7 +101,7 @@ private:
     {
         const auto& src_vec = msg->data;
         size_t byte_cnt = src_vec.size() * sizeof(double);
-        //==== 修改：使用 allocate_by_bytes ====
+        //==== 使用 allocate_by_bytes ====
         void* buf = mem_pool_->allocate_by_bytes(byte_cnt);
         if(nullptr == buf)
         {

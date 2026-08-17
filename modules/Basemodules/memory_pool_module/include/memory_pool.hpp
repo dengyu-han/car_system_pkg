@@ -17,7 +17,7 @@ FreeNode(std::size_t s,std::size_t cnt):start_idx(s),block_cnt(cnt),next(nullptr
 
 class RandomMemoryPool{
 private:
-    // =====仅调整此处声明顺序，和构造初始化顺序匹配，消除-Wreorder警告，其它全部不动=====
+    // =====需注意此处声明顺序，和构造初始化顺序匹配，消除-Wreorder警告=====
     std::size_t block_size_{0U};
     std::size_t total_blocks_{0U};
     uint8_t* base_ptr_{nullptr};

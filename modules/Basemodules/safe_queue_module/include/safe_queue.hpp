@@ -64,8 +64,11 @@ bool push(const T& data,std::chrono::milliseconds timeout=std::chrono::milliseco
 if(stop_flag_) return false;        //后置   当然包括如果休眠被‘停工’唤醒 然后队列还是满的！ 到这也能阻止push
 }
    else if constexpr(Policy == safe_queue_mod::QueueFullPolicy::DROP_OLDEST){      //DROP_OLDEST模式不用timeout
-       while(queue_.size()>=max_size_){
+       while(!stop_flag_&&queue_.size()>=max_size_){
             queue_.pop();
+          }
+            if(stop_flag_){ 
+            return false;
     }
 }
 
@@ -94,10 +97,14 @@ if(stop_flag_) return false;
 }
 else if constexpr(Policy == safe_queue_mod::QueueFullPolicy::DROP_OLDEST){         //DROP_OLDEST模式不用timeout
 
-if(queue_.size()>=max_size_){
+while(!stop_flag_&&queue_.size()>=max_size_){
 queue_.pop();
 }
+if(stop_flag_) {
+return false;
 }
+}
+
 
 queue_.push(std::move(data));
 consumer_cv_.notify_one();
@@ -173,6 +180,7 @@ while(!queue_.empty()){
     queue_.pop();
 }
 }
+
 };
 }
 

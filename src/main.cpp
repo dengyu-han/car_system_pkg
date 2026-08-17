@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
     logger.logger_send(logger_mod::LoggerLevel::INFO, "system start");
 
     memory_pool_mod::RandomMemoryPool mem_pool(64U,200U);
-    // ✔正确：命名空间cache_data_mod，类名DataCache
+    
     cache_data_mod::DataCache global_cache;
 
     auto ros_adapter = std::make_shared<ros2_adapter_mod::Ros2SensorAdapter>("sensor_ros_adapter_node");
